@@ -20,7 +20,13 @@ RUN yum install -y java-1.8.0-openjdk-headless wget which && yum clean all
 
 RUN groupadd -g 1000 elasticsearch && adduser -u 1000 -g 1000 -d /usr/share/elasticsearch elasticsearch
 
+#WORKDIR /etc/
+# RUN ls -al
+# RUN sed -e 's/\#.*\(precedence ::ffff:0:0\/96  100\)/\1/g' -i /etc/gai.conf
+
 WORKDIR /usr/share/elasticsearch
+
+RUN echo "precedence ::ffff:0:0/96 100" > /etc/gai.conf
 
 # Download/extract defined ES version. busybox tar can't strip leading dir.
 RUN wget --progress=bar:force {{ url_root }}/{{ tarball }} && \
