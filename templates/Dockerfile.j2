@@ -1,5 +1,5 @@
 # This Dockerfile was generated from templates/Dockerfile.j2
-{% set plugin_list = 'x-pack ingest-user-agent ingest-geoip' %}
+{% set plugin_list = '' %}
 {% if staging_build_num -%}
 {%   set version_tag = elastic_version + '-' + staging_build_num -%}
 {%   set url_root = 'http://staging.elastic.co/%s/downloads/elasticsearch' % version_tag -%}
